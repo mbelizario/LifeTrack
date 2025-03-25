@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeTrack.UI.Web", "src\LifeTrack.UI.Web\LifeTrack.UI.Web.csproj", "{C4E58B67-DA56-4364-A132-68CEB5A6526B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{982C33F5-0F5A-40EC-A1D8-392005BE8318}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{32AFAE53-794B-4480-8C9C-1D4DC01DF413}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{F71E5B9F-309C-435C-AFB8-46897E45ED7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{BBECEB82-574B-4BC2-97EE-EFE493023E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeTrack.Application", "LifeTrack.Application\LifeTrack.Application.csproj", "{BFDF42CA-CF4D-4223-8991-7C0EB33D9AAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeTrack.Domain", "LifeTrack.Domain\LifeTrack.Domain.csproj", "{AFB49BE2-2359-4B55-9C73-1DD82E80F6DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{B6CD23F1-D042-4A6F-965A-1D038A4935F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{46AEE984-B6C7-43DB-AFB0-47E6698A1060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeTrack.Infra.Data", "LifeTrack.Infra.Data\LifeTrack.Infra.Data.csproj", "{4DE72051-32E5-48C4-928A-D8F57805E74C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4E58B67-DA56-4364-A132-68CEB5A6526B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E58B67-DA56-4364-A132-68CEB5A6526B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E58B67-DA56-4364-A132-68CEB5A6526B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E58B67-DA56-4364-A132-68CEB5A6526B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFDF42CA-CF4D-4223-8991-7C0EB33D9AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFDF42CA-CF4D-4223-8991-7C0EB33D9AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFDF42CA-CF4D-4223-8991-7C0EB33D9AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFDF42CA-CF4D-4223-8991-7C0EB33D9AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB49BE2-2359-4B55-9C73-1DD82E80F6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB49BE2-2359-4B55-9C73-1DD82E80F6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB49BE2-2359-4B55-9C73-1DD82E80F6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB49BE2-2359-4B55-9C73-1DD82E80F6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DE72051-32E5-48C4-928A-D8F57805E74C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE72051-32E5-48C4-928A-D8F57805E74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE72051-32E5-48C4-928A-D8F57805E74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DE72051-32E5-48C4-928A-D8F57805E74C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4E58B67-DA56-4364-A132-68CEB5A6526B} = {982C33F5-0F5A-40EC-A1D8-392005BE8318}
+		{BFDF42CA-CF4D-4223-8991-7C0EB33D9AAE} = {32AFAE53-794B-4480-8C9C-1D4DC01DF413}
+		{AFB49BE2-2359-4B55-9C73-1DD82E80F6DA} = {F71E5B9F-309C-435C-AFB8-46897E45ED7F}
+		{B6CD23F1-D042-4A6F-965A-1D038A4935F3} = {BBECEB82-574B-4BC2-97EE-EFE493023E95}
+		{46AEE984-B6C7-43DB-AFB0-47E6698A1060} = {BBECEB82-574B-4BC2-97EE-EFE493023E95}
+		{4DE72051-32E5-48C4-928A-D8F57805E74C} = {B6CD23F1-D042-4A6F-965A-1D038A4935F3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECE72169-1FA2-4E20-8A18-C164FF3B9ABC}
+	EndGlobalSection
+EndGlobal
