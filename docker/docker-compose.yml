@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  lifetrack:
+    build:
+      context: ..
+      dockerfile: /src/LifeTrack.UI.Web/Dockerfile
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1435;Database=LifeTrackDB;User Id=sa;Password=Mudar@2025;
+    ports:
+      - "8080:8080"
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-container
+    environment:
+      SA_PASSWORD: "Mudar@2025"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1435:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+volumes:
+  sqlserver_data:
