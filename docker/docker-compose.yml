@@ -22,6 +22,28 @@ services:
       - "1435:1433"
     volumes:
       - sqlserver_data:/var/opt/mssql
+    networks:
+      - lifetrack-network
+
+  sql-init:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - sqlserver
+    volumes:
+      - ../sql/init.sql:/init.sql
+    entrypoint: >
+      bash -c "
+      echo 'Aguardando SQL Server iniciar...';
+      sleep 20;
+      /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P Mudar@2025 -d master -i /init.sql;
+      echo 'Script executado com sucesso.'"
+    restart: "no"
+    networks:
+      - lifetrack-network
 
 volumes:
   sqlserver_data:
+
+networks:
+  lifetrack-network:
+    driver: bridge
