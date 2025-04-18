@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LifeTrack.Infra.CrossCutting.IoC\LifeTrack.Infra.CrossCutting.IoC.csproj" />
-  </ItemGroup>
-
 </Project>
