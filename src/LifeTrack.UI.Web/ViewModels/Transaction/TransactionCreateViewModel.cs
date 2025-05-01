@@ -18,7 +18,7 @@ namespace LifeTrack.UI.Web.ViewModels.Transaction
         public decimal Amount { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime TransactionDate { get; set; }
         public IEnumerable<SelectListItem> Types { get; set; } = Enumerable.Empty<SelectListItem>();
         public IEnumerable<SelectListItem> Categories { get; set; } = Enumerable.Empty<SelectListItem>();
     }

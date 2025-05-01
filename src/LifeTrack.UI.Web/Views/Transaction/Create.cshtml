@@ -10,7 +10,7 @@
                 <h6>Cadastrar Nova Transação</h6>
             </div>
             <div class="card-body">
-                <form role="form">
+                <form  id="transactionForm">
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="input-group input-group-outline mb-3">
@@ -28,9 +28,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="input-group input-group-outline mb-3">
-                                <label asp-for="Date" class="form-label">Data</label>
-                                <input asp-for="Date" type="text" class="form-control date" />
-                                <span asp-validation-for="Date" class="text-danger"></span>
+                                <label asp-for="TransactionDate" class="form-label">Data</label>
+                                <input asp-for="TransactionDate" type="text" class="form-control date" />
+                                <span asp-validation-for="TransactionDate" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -48,13 +48,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="input-group input-group-outline mb-3">
-                                <select asp-for="TypeId"
+                                <select asp-for="CategoryId"
                                         id="categoryDropdown"
                                         class="form-control" disabled>
                                     <option value="">Selecione uma categoria</option>
                                 </select>
                             </div>
-                            <span asp-validation-for="TypeId" class="text-danger"></span>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="text-center">
@@ -70,7 +70,8 @@
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/transaction/transaction.js"></script>
     <script>
         $(document).ready(function () {
             // Máscara para valor em reais

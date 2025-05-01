@@ -48,7 +48,7 @@ BEGIN
         Id INT IDENTITY(1,1) PRIMARY KEY,
         Description VARCHAR(255) NOT NULL,
         CategoryId INT NOT NULL,
-        Value DECIMAL(18, 2) NOT NULL,
+        Amount DECIMAL(18, 2) NOT NULL,
         StatusId INT NOT NULL,
         TransactionDate DATE NOT NULL,
         FOREIGN KEY (CategoryId) REFERENCES TransactionCategory(Id),
