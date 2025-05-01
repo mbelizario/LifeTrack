@@ -1,4 +1,4 @@
--- CriaÁ„o do banco de dados se n„o existir
+-- Cria√ß√£o do banco de dados se n√£o existir
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'LifeTrackDB')
 BEGIN
     CREATE DATABASE LifeTrackDB;
@@ -14,7 +14,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='TransactionStatus' AND xtype
 BEGIN
     CREATE TABLE TransactionStatus (
         Id INT IDENTITY(1,1) PRIMARY KEY,
-        Name NVARCHAR(100) NOT NULL
+        Name VARCHAR(100) NOT NULL
     );
 END
 GO
@@ -24,7 +24,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='TransactionType' AND xtype='
 BEGIN
     CREATE TABLE TransactionType (
         Id INT IDENTITY(1,1) PRIMARY KEY,
-        Name NVARCHAR(100) NOT NULL
+        Name VARCHAR(100) NOT NULL
     );
 END
 GO
@@ -34,7 +34,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='TransactionCategory' AND xty
 BEGIN
     CREATE TABLE TransactionCategory (
         Id INT IDENTITY(1,1) PRIMARY KEY,
-        Name NVARCHAR(100) NOT NULL,
+        Name VARCHAR(100) NOT NULL,
         TypeId INT NOT NULL,
         FOREIGN KEY (TypeId) REFERENCES TransactionType(Id)
     );
@@ -46,7 +46,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Transaction' AND xtype='U')
 BEGIN
     CREATE TABLE [Transaction] (
         Id INT IDENTITY(1,1) PRIMARY KEY,
-        Description NVARCHAR(255) NOT NULL,
+        Description VARCHAR(255) NOT NULL,
         CategoryId INT NOT NULL,
         Value DECIMAL(18, 2) NOT NULL,
         StatusId INT NOT NULL,
@@ -75,86 +75,86 @@ BEGIN
     INSERT INTO TransactionType (Name) VALUES ('Entrada');
 END
 
-IF NOT EXISTS (SELECT 1 FROM TransactionType WHERE Name = 'SaÌda')
+IF NOT EXISTS (SELECT 1 FROM TransactionType WHERE Name = 'Sa√≠da')
 BEGIN
-    INSERT INTO TransactionType (Name) VALUES ('SaÌda');
+    INSERT INTO TransactionType (Name) VALUES ('Sa√≠da');
 END
 GO
 
 -- Seed para TransactionCategory
 
--- SaÌda
-IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Sa˙de')
+-- Sa√≠da
+IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Sa√∫de')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Sa˙de', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Sa√∫de', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Transporte')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Transporte', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Transporte', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
-IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'AlimentaÁ„o')
+IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Alimenta√ß√£o')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'AlimentaÁ„o', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Alimenta√ß√£o', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Moradia')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Moradia', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Moradia', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Higiene pessoal')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Higiene pessoal', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Higiene pessoal', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Presentes')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Presentes', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Presentes', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
-IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'EducaÁ„o')
+IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Educa√ß√£o')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'EducaÁ„o', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Educa√ß√£o', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Gastos comigo')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Gastos comigo', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Gastos comigo', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Entretenimento')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Entretenimento', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Entretenimento', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 IF EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Investimentos')
 BEGIN
     UPDATE TransactionCategory
-    SET TypeId = (SELECT Id FROM TransactionType WHERE Name = 'SaÌda')
+    SET TypeId = (SELECT Id FROM TransactionType WHERE Name = 'Sa√≠da')
     WHERE Name = 'Investimentos';
 END
 ELSE
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Investimentos', Id FROM TransactionType WHERE Name = 'SaÌda';
+    SELECT 'Investimentos', Id FROM TransactionType WHERE Name = 'Sa√≠da';
 END
 
 -- Entrada
-IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Sal·rio')
+IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Sal√°rio')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'Sal·rio', Id FROM TransactionType WHERE Name = 'Entrada';
+    SELECT 'Sal√°rio', Id FROM TransactionType WHERE Name = 'Entrada';
 END
 
 IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Retorno investimentos')
@@ -163,9 +163,9 @@ BEGIN
     SELECT 'Retorno investimentos', Id FROM TransactionType WHERE Name = 'Entrada';
 END
 
-IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'BenefÌcios')
+IF NOT EXISTS (SELECT 1 FROM TransactionCategory WHERE Name = 'Benef√≠cios')
 BEGIN
     INSERT INTO TransactionCategory (Name, TypeId)
-    SELECT 'BenefÌcios', Id FROM TransactionType WHERE Name = 'Entrada';
+    SELECT 'Benef√≠cios', Id FROM TransactionType WHERE Name = 'Entrada';
 END
 GO
