@@ -19,10 +19,10 @@ namespace LifeTrack.Infra.Data.Repositories
             const string sql = @"SELECT Id,
                                        Name,
                                        TypeId
-                                FROM LifeTrackDB.dboTransactionCategory
+                                FROM LifeTrackDB.dbo.TransactionCategory
                                 WHERE TypeId = @typeId";
 
-            var result = await _dbConnection.QueryAsync<TransactionCategory>(sql);
+            var result = await _dbConnection.QueryAsync<TransactionCategory>(sql, new { typeId });
             return result;
         }
     }

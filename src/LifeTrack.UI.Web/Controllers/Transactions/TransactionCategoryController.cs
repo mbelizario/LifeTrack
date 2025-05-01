@@ -1,6 +1,6 @@
 ﻿using LifeTrack.Application.Interfaces;
-using LifeTrack.UI.Web.ViewModels.Transaction.TransactionCategory;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LifeTrack.UI.Web.Controllers.Transactions
 {
@@ -12,10 +12,11 @@ namespace LifeTrack.UI.Web.Controllers.Transactions
         {
             _transactionCategoryService = transactionCategoryService;
         }
-        public async Task<IActionResult> Index()
-        {
-            return View();
-        }
 
+        public async Task<IEnumerable<SelectListItem>> GetByType(int id)
+        {
+            var categories = await _transactionCategoryService.GetByTypeAsync(id);
+            return categories.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+        }
     }
 }

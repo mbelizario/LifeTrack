@@ -1,0 +1,126 @@
+﻿@using LifeTrack.UI.Web.ViewModels.Transaction
+@model TransactionCreateViewModel
+@{
+    ViewData["Title"] = "Cadastrar Transação";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-header pb-0">
+                <h6>Cadastrar Nova Transação</h6>
+            </div>
+            <div class="card-body">
+                <form role="form">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="input-group input-group-outline mb-3">
+                                <label asp-for="Description" class="form-label">Descrição</label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-outline mb-3">
+                                <label asp-for="Amount" class="form-label">Valor</label>
+                                <input asp-for="Amount" class="form-control money" />
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-outline mb-3">
+                                <label asp-for="Date" class="form-label">Data</label>
+                                <input asp-for="Date" type="text" class="form-control date" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline mb-3">
+                                <select asp-for="TypeId"
+                                        asp-items="Model.Types"
+                                        id="typeDropdown"
+                                        class="form-control">
+                                    <option value="">Selecione um tipo</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="TypeId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline mb-3">
+                                <select asp-for="TypeId"
+                                        id="categoryDropdown"
+                                        class="form-control" disabled>
+                                    <option value="">Selecione uma categoria</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="TypeId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Máscara para valor em reais
+            $('.money').mask('#.##0,00', { reverse: true });
+
+            // Máscara para data
+            $('.date').mask('00/00/0000');
+
+            // Habilita categoria conforme tipo selecionado
+            $('#typeDropdown').change(function () {
+                let typeId = $(this).val();
+
+                if (typeId) {
+                    $.ajax({
+                        url: '/TransactionCategory/GetByType',
+                        type: 'GET',
+                        data: { id: typeId },
+                        success: function (data) {
+                            let $categoryDropdown = $('#categoryDropdown');
+                            $categoryDropdown.prop('disabled', false);
+
+                            $categoryDropdown.empty(); // Limpa categorias existentes
+
+
+                            // Adiciona opção padrão
+                            $categoryDropdown.append($('<option>', {
+                                value: '',
+                                text: 'Selecione uma categoria'
+                            }));
+
+                            // Adiciona categorias retornadas
+                            $.each(data, function (i, item) {
+                                $categoryDropdown.append($('<option>', {
+                                    value: item.value,
+                                    text: item.text
+                                }));
+                            });
+
+                            $categoryDropdown.prop('disabled', false);
+                        },
+                        error: function () {
+                            alert('Erro ao carregar as categorias.');
+                            $('#categoryDropdown').prop('disabled', true);
+                        }
+                    });
+                } else {
+                    $('#categoryDropdown').val('');
+                    $('#categoryDropdown').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+}
